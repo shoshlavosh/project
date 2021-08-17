@@ -7,4 +7,3 @@ from flask_sqlalchemy import SQLAlchemy
 #SQLAlchemy & assigning it to the variable "db"
 db = SQLAlchemy()
 
-class Own
