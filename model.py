@@ -24,7 +24,7 @@ class User(db.Model):
 
     def __repr__(self):
         """Show info about user"""
-        return f'<User user_id={self.user_id} email={self.email}'
+        return f'<User user_id={self.user_id} email={self.email}>'
 
     
 class Building(db.Model):
@@ -68,9 +68,10 @@ class Complaint(db.Model):
     date_filed = db.Column(db.DateTime) #convert from str to 
                                         #datetime obj (see geeksforgeeks)
                                         #link from Jennifer
+                                        #format '2002, 4, 3'
 
     building = db.relationship("Building") #relationship
-    violation = db.relationship("Violation")
+    violation = db.relationship("Violation", uselist=False)
 
     def __repr__(self):
         """Show a complaint"""
@@ -91,9 +92,10 @@ class Violation(db.Model):
     date_filed = db.Column(db.DateTime) #convert from str to 
                                         #datetime obj (see geeksforgeeks)
                                         #link from Jennifer
+                                        #format '2002, 4, 3'
 
     building = db.relationship("Building") #relationships
-    complaint = db.relationship("Complaint") 
+    complaint = db.relationship("Complaint", uselist=False) 
 
     def __repr__(self):
         """Show a violation"""
@@ -111,7 +113,7 @@ class Review(db.Model):
     building_id = db.Column(db.Integer, 
                             db.ForeignKey('buildings.building_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    review_date = db.Column(db.DateTime)
+    review_date = db.Column(db.DateTime) #format '2002, 4, 3'
     review_text = db.Column(db.String)
     rating = db.Column(db.Integer) #this is for 2nd sprint
     landlord_name = db.Column(db.String) 
