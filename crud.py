@@ -49,17 +49,21 @@ def create_violation(complaint_number, building_id, description, date_filed):
     db.session.add(violation)
     db.session.commit()
 
+    return violation
 
-# def create_review(review_id, building_id, user_id, review_date, review_text, rating, landlord_name):
-#     """Create and return a new review."""
 
-#     review = Review(review_id=review_id, building_id=building_id, 
-#                     user_id=user_id, review_date=review_date, 
-#                     review_text=review_text, rating=rating, 
-#                     landlord_name=landlord_name)
+def create_review(review_id, building_id, user_id, review_date, review_text, rating, landlord_name):
+    """Create and return a new review."""
 
-#     db.session.add(review)
-#     db.session.commmit()
+    review = Review(review_id=review_id, building_id=building_id, 
+                    user_id=user_id, review_date=review_date, 
+                    review_text=review_text, rating=rating, 
+                    landlord_name=landlord_name)
+
+    db.session.add(review)
+    db.session.commit()
+
+    return review
 
 
 if __name__ == '__main__':
