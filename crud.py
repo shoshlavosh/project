@@ -26,11 +26,12 @@ def create_building(address, street_number, street_name, street_suffix, zip_code
     return building
 
 
-def create_complaint(complaint_number, building_id, description, date_filed):
+def create_complaint(complaint_number, building_id, complaint_description, date_filed):
     """Create and return a new complaint"""
 
     complaint = Complaint(complaint_number=complaint_number, 
-                        building_id=building_id, description=description, 
+                        building_id=building_id, 
+                        complaint_description=complaint_description, 
                         date_filed=date_filed)
 
     db.session.add(complaint)
@@ -39,11 +40,14 @@ def create_complaint(complaint_number, building_id, description, date_filed):
     return complaint
 
 
-def create_violation(complaint_number, building_id, description, date_filed):
+def create_violation(complaint_number, building_id, nov_category_description, item, nov_item_description, date_filed):
     """Create and return a new violation"""
 
     violation = Violation(complaint_number=complaint_number, 
-                        building_id=building_id, description=description, 
+                        building_id=building_id, 
+                        nov_category_description=nov_category_description,
+                        item = item,
+                        nov_item_description = nov_item_description, 
                         date_filed=date_filed)
 
     db.session.add(violation)

@@ -66,7 +66,7 @@ class Complaint(db.Model):
                             db.ForeignKey('buildings.building_id'))
     # violation_id = db.Column(db.Integer,
     #                         db.ForeignKey('violations.violation_id'))
-    description = db.Column(db.String)
+    complaint_description = db.Column(db.String)
     date_filed = db.Column(db.DateTime) #convert from str to 
                                         #datetime obj (see geeksforgeeks)
                                         #link from Jennifer
@@ -77,7 +77,7 @@ class Complaint(db.Model):
 
     def __repr__(self):
         """Show a complaint"""
-        return f'<Complaint complaint_number={self.complaint_number} building_id={self.building_id} description={self.description}>'
+        return f'<Complaint complaint_number={self.complaint_number} building_id={self.building_id} complaint_description={self.complaint_description}>'
 
 
 class Violation(db.Model):
@@ -94,7 +94,9 @@ class Violation(db.Model):
     complaint_number = db.Column(db.Integer, 
                                 db.ForeignKey('complaints.complaint_number'), 
                                 nullable=True)
-    description = db.Column(db.String)
+    nov_category_description = db.Column(db.String)
+    item = db.Column(db.String)
+    nov_category_description = db.Column(db.String)
     date_filed = db.Column(db.DateTime) #convert from str to 
                                         #datetime obj (see geeksforgeeks)
                                         #link from Jennifer
@@ -105,7 +107,7 @@ class Violation(db.Model):
 
     def __repr__(self):
         """Show a violation"""
-        return f'<Violation complaint_number={self.complaint_number} building_id={self.building_id} description={self.description}>'
+        return f'<Violation complaint_number={self.complaint_number} building_id={self.building_id} complaint_description={self.complaint_description}>'
 
 
 class Review(db.Model):
@@ -119,7 +121,8 @@ class Review(db.Model):
     building_id = db.Column(db.Integer, 
                             db.ForeignKey('buildings.building_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    review_date = db.Column(db.DateTime) #format '2002, 4, 3'
+    review_date = db.Column(db.DateTime) #format '2002, 4, 3' 
+                                        #should be automatically generated
     review_text = db.Column(db.String)
     rating = db.Column(db.Integer) #this is for 2nd sprint
     landlord_name = db.Column(db.String) 
