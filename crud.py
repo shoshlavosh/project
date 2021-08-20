@@ -13,12 +13,12 @@ def create_user(email, password):
     return user
 
 
-def create_building(address, street_number, street_name, street_suffix, zip_code, lat_long):
+def create_building(street_number, street_name, street_suffix, zip_code, lat_long):
     """Create and return a new building"""
 
-    building = Building(address=address, street_number=street_number, 
+    building = Building(street_number=street_number, 
     street_name=street_name, street_suffix=street_suffix, zip_code=zip_code, 
-    lat_long=lat_long)
+    lat_long=lat_long) #removed 'address'
 
     db.session.add(building)
     db.session.commit()
@@ -38,6 +38,12 @@ def create_complaint(complaint_number, building_id, complaint_description, date_
     db.session.commit()
 
     return complaint
+
+
+def get_complaint(complaint_number):
+    """Get a complaint"""
+
+    return Complaint.query.get(complaint_number)
 
 
 def create_violation(complaint_number, building_id, nov_category_description, item, nov_item_description, date_filed):

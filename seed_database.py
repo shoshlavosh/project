@@ -17,7 +17,25 @@ os.system('createdb tenants')
 model.connect_to_db(server.app) #connect to the db through model.py
 model.db.create_all() #create db using model.py
 
+#Note: datetime in the violations.json and complaints.json file is
+#in this format: '%Y-%m-%dT%H:%M:%S.%f'
+#variable = datetime.strptime(date_str, date_format)
+#strptime means "string parse time"
+
+# #create fake buildings
+for n in range(10):
+    street_number = f'{n}'
+    street_name = f'street{n}'
+    street_suffix = f'Av'
+    zip_code = f'94110'
+    lat_long = f'{n}'
+
+    #create building
+    building = crud.create_building(street_number, street_name, 
+    street_suffix, zip_code, lat_long)
+
 #open up json files and parse through them, item by item
+#add complaints to database
 
 # with open('data/evictions.json') as f: #syntax is from the movie ratings lab
 complaints_data = json.loads(open('data/complaints.json').read())
@@ -27,9 +45,11 @@ complaints_in_db = []
 for complaint in complaints_data:
     complaint_number, complaint_description = (
         complaint['complaint_number'],
-        complaint['complaint_description']
+        complaint.get('complaint_description') #returns None if there
+        #isn't a complaint_description
     )
     building_id = '1' #added for testing reasons
+    # building_id = complaint['building_id']
     date_filed = datetime.strptime(complaint['date_filed'], '%Y-%m-%dT%H:%M:%S.%f')
 
     db_complaint = crud.create_complaint(complaint_number, building_id,
@@ -41,53 +61,42 @@ for complaint in complaints_data:
 
 violations_data = json.loads(open('data/violations.json').read())
 
-#print(violations_data)
+#add violations to the database
+violations_in_db = []
 
-#datetime in the violations.json and complaints.json file is
-#in this format: '%Y-%m-%dT%H:%M:%S.%f'
-#variable = datetime.strptime(date_str, date_format)
-#strptime means "string parse time"
+for violation in violations_data:
+    if not crud.get_complaint(violation['complaint_number']):
+        crud.create_complaint(violation['complaint_number'], None, None, None)
+    complaint_number, nov_category_description = (
+        violation['complaint_number'],
+        violation['nov_category_description']
+    )
+    item = None
+    if 'item' in violation:
+        item = violation['item']
+    nov_item_description = None
+    if 'nov_item_description' in violation:
+        nov_item_description = violation['nov_item_description']
+    building_id = '1' #added for testing purposes
+    # building_id = violation['building_id']
+    date_filed = datetime.strptime(violation['date_filed'], '%Y-%m-%dT%H:%M:%S.%f')
 
-#Create complaints, store them in a list to create fake complaints later
-complaints_in_db = []
+    db_violation = crud.create_violation(complaint_number, building_id, 
+                                        nov_category_description,
+                                        item, nov_item_description, 
+                                        date_filed)
 
-# for complaints in complaints_data:
+    violations_in_db.append(db_violation)
 
+#create fake users & fake buildings to add to database
+for n in range(10):
+    email = f'user{n}@test.com'
+    password = 'test'
 
+    user = crud.create_user(email, password)
 
+    #create reviews for user
+    for test in range(10):
+        test_review = f'Test {test} review'
 
-
-
-
-
-
-
-#From movie ratings app:
-
-# import os
-# import json
-# from random import choice, randint
-# from datetime import datetime
-
-# import crud
-# import model
-# import server
-
-# os.system('dropdb ratings')
-# os.system('createdb ratings')
-
-# model.connect_to_db(server.app)
-# model.db.create_all()
-
-# with open('data/movies.json') as f:
-#     movie_data = json.loads(f.read())
-
-# #Create movies, store them in list so we can use them
-# #to create fake ratings later
-# movies_in_db = []
-# for movie in movie_data:
-    
-#     #TODO: get the title, overview, and poster_path from the movie
-#     #dictionary. Then, get the release_date and convert it to a 
-#     #datetime object with datetime.strptime
-    
+        crud.create_review(user, building) #and review text (string)

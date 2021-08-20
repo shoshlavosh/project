@@ -35,8 +35,8 @@ class Building(db.Model):
     building_id = db.Column(db.Integer,
                             autoincrement=True,
                             primary_key=True)
-    address = db.Column(db.String) #create using fields below: street_number etc.
-                        # unique=True? 
+    # address = db.Column(db.String) #create using fields below: street_number etc.
+    #                     # unique=True? 
 
     street_number = db.Column(db.String) #it's str in the dataset, should I change it to int?
     street_name = db.Column(db.String)
@@ -52,7 +52,7 @@ class Building(db.Model):
 
     def __repr__(self):
         """Show info about a building"""
-        return f'<Building building_id={self.building_id} address={self.address}>'
+        return f'<Building building_id={self.building_id} address={self.street_number} {self.street_name} {self.street_suffix} {self.zip_code}>'
     
 
 class Complaint(db.Model):
@@ -60,14 +60,15 @@ class Complaint(db.Model):
 
     __tablename__ = 'complaints'
 
-    complaint_number = db.Column(db.Integer, 
+    complaint_number = db.Column(db.String, 
                             primary_key=True)
     building_id = db.Column(db.Integer, 
-                            db.ForeignKey('buildings.building_id'))
+                            db.ForeignKey('buildings.building_id'),
+                            nullable=True)
     # violation_id = db.Column(db.Integer,
     #                         db.ForeignKey('violations.violation_id'))
-    complaint_description = db.Column(db.String)
-    date_filed = db.Column(db.DateTime) #convert from str to 
+    complaint_description = db.Column(db.String, nullable=True)
+    date_filed = db.Column(db.DateTime, nullable=True) #convert from str to 
                                         #datetime obj (see geeksforgeeks)
                                         #link from Jennifer
                                         #format '2002, 4, 3'
@@ -91,15 +92,14 @@ class Violation(db.Model):
     building_id = db.Column(db.Integer, 
                             db.ForeignKey('buildings.building_id'),
                             nullable=True)
-    complaint_number = db.Column(db.Integer, 
+    complaint_number = db.Column(db.String, 
                                 db.ForeignKey('complaints.complaint_number'), 
                                 nullable=True)
     nov_category_description = db.Column(db.String)
     item = db.Column(db.String)
-    nov_category_description = db.Column(db.String)
+    nov_item_description = db.Column(db.String)
     date_filed = db.Column(db.DateTime) #convert from str to 
-                                        #datetime obj (see geeksforgeeks)
-                                        #link from Jennifer
+                                        #datetime obj
                                         #format '2002, 4, 3'
 
     # building = db.relationship("Building") 
