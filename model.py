@@ -120,12 +120,13 @@ class Review(db.Model):
                         primary_key=True)
     building_id = db.Column(db.Integer, 
                             db.ForeignKey('buildings.building_id'))
+                            #should be created if there isn't one already
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     review_date = db.Column(db.DateTime) #format '2002, 4, 3' 
                                         #should be automatically generated
     review_text = db.Column(db.String)
-    rating = db.Column(db.Integer) #this is for 2nd sprint
-    landlord_name = db.Column(db.String) 
+    rating = db.Column(db.Integer, nullable=True) #this is for 2nd sprint
+    landlord_name = db.Column(db.String, nullable=True) 
 
     #relationships
     building = db.relationship("Building")

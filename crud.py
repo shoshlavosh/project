@@ -25,6 +25,11 @@ def create_building(street_number, street_name, street_suffix, zip_code, lat_lon
 
     return building
 
+def get_buildings():
+    """Return all buildings"""
+
+    return Building.query.all()
+
 
 def create_complaint(complaint_number, building_id, complaint_description, date_filed):
     """Create and return a new complaint"""

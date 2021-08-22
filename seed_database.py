@@ -22,7 +22,7 @@ model.db.create_all() #create db using model.py
 #variable = datetime.strptime(date_str, date_format)
 #strptime means "string parse time"
 
-# #create fake buildings
+# #create fake buildings to add to the database
 for n in range(10):
     street_number = f'{n}'
     street_name = f'street{n}'
@@ -88,15 +88,25 @@ for violation in violations_data:
 
     violations_in_db.append(db_violation)
 
-#create fake users & fake buildings to add to database
+#create fake users & fake reviews to add to database
 for n in range(10):
     email = f'user{n}@test.com'
     password = 'test'
 
     user = crud.create_user(email, password)
 
-    #create reviews for user
-    for test in range(10):
-        test_review = f'Test {test} review'
 
-        crud.create_review(user, building) #and review text (string)
+    #create reviews for user
+    for i in range(10):
+        review__id = f'Test {i} review' #the above fake users didn't need this
+        building_id = f'Building{i}' 
+        user_id = f'User{i}'
+        review_date = f'200{i}, 4, 3'
+        review_text = 'test'
+        rating = f'Rating {i}'
+        landlord_name = f'Landlord{i}'
+
+
+        crud.create_review(building_id, user_id, review_date, review_text, rating, landlord_name)
+        # review = crud.create_review(review_id = '1', building_id='1', user_id='1', review_date='2002, 4, 3', review_text='test', rating=None, landlord_name=None)
+        #also how do I code it in model.py so that the review_date is set automatically?
