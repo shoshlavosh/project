@@ -14,7 +14,7 @@ os.system('dropdb tenants')
 os.system('createdb tenants')
 
 #connect to the database & call db.create_all()
-model.connect_to_db(server.app) #connect to the db through model.py
+model.connect_to_db(server.app, echo=False) #connect to the db through model.py
 model.db.create_all() #create db using model.py
 
 #Note: datetime in the violations.json and complaints.json file is
@@ -98,15 +98,35 @@ for n in range(10):
 
     #create reviews for user
     for i in range(10):
-        review__id = f'Test {i} review' #the above fake users didn't need this
-        building_id = f'Building{i}' 
-        user_id = f'User{i}'
+
+        # review__id = f'Test {i} review' #the above fake users didn't need this
+        building_id = 1 
+        user_id = 1
         review_date = f'200{i}, 4, 3'
         review_text = 'test'
-        rating = f'Rating {i}'
+        rating = i
         landlord_name = f'Landlord{i}'
 
 
         crud.create_review(building_id, user_id, review_date, review_text, rating, landlord_name)
-        # review = crud.create_review(review_id = '1', building_id='1', user_id='1', review_date='2002, 4, 3', review_text='test', rating=None, landlord_name=None)
         #also how do I code it in model.py so that the review_date is set automatically?
+
+#create fake complaints
+for n in range(10):
+    complaint_number = n
+    building_id = 1
+    complaint_description = f'test complaint desc {n}'
+    date_filed = f'200{n}, 4, 3'
+
+    complaint = crud.create_complaint(complaint_number, building_id, complaint_description, date_filed)
+
+#create fake violations
+for n in range(10):
+    complaint_number = n
+    building_id = 1
+    nov_category_description = f'test nov item desc {n}'
+    item = f'test item {n}'
+    nov_item_description = f'test item description {n}'
+    date_filed = f'200{n}, 4, 3'
+    
+    violation = crud.create_violation(complaint_number, building_id, nov_category_description, item, nov_item_description, date_filed)

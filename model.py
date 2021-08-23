@@ -45,9 +45,9 @@ class Building(db.Model):
     lat_long = db.Column(db.Integer)
 
     #relationships
-    complaint = db.relationship("Complaint")
-    violation = db.relationship("Violation")
-    review = db.relationship("Review")
+    complaints = db.relationship("Complaint")
+    violations = db.relationship("Violation")
+    reviews = db.relationship("Review")
 
 
     def __repr__(self):
@@ -74,7 +74,7 @@ class Complaint(db.Model):
                                         #format '2002, 4, 3'
 
     # building = db.relationship("Building", uselist=False) #relationship
-    violation = db.relationship("Violation", uselist=False)
+    violations = db.relationship("Violation", uselist=False)
 
     def __repr__(self):
         """Show a complaint"""
@@ -144,12 +144,12 @@ def connect_to_db(flask_app, db_uri="postgresql:///tenants", echo=True):
 
     db.app = flask_app
     db.init_app(flask_app)
-    db.create_all()
+    # db.create_all()
 
     print("Connected to the db!")
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
     from server import app
 
     connect_to_db(app)

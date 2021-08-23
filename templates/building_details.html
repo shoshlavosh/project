@@ -1,0 +1,19 @@
+<!-- Add building details -->
+<!-- and links to complaints and violations and reviews -->
+{% extends 'base.html' %}
+
+{% block title %} {{ building.street_number }} {{ building.street_name }} 
+-Details{% endblock %}
+
+{% block body %}
+<h1>{{ building.street_number }} {{ building.street_name }}</h1>
+
+<p>
+  <!-- for loop to loop over complaints -->
+</p>
+
+<p>
+{{ building.complaints }}
+</p>
+
+{% endblock %}

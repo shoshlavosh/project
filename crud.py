@@ -67,10 +67,10 @@ def create_violation(complaint_number, building_id, nov_category_description, it
     return violation
 
 
-def create_review(review_id, building_id, user_id, review_date, review_text, rating, landlord_name):
+def create_review(building_id, user_id, review_date, review_text, rating, landlord_name):
     """Create and return a new review."""
 
-    review = Review(review_id=review_id, building_id=building_id, 
+    review = Review(building_id=building_id, 
                     user_id=user_id, review_date=review_date, 
                     review_text=review_text, rating=rating, 
                     landlord_name=landlord_name)
@@ -79,6 +79,17 @@ def create_review(review_id, building_id, user_id, review_date, review_text, rat
     db.session.commit()
 
     return review
+
+
+def get_building_by_id(building_id):
+    """Returns a building by its building_id"""
+
+    return Building.query.options(db.joinedload('complaints'))\
+                        .options(db.joinedload('violations'))\
+                        .options(db.joinedload('reviews'))\
+                        .get(building_id)
+
+
 
 
 if __name__ == '__main__':
