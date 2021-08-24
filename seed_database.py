@@ -15,6 +15,7 @@ os.system('createdb tenants')
 
 #connect to the database & call db.create_all()
 model.connect_to_db(server.app, echo=False) #connect to the db through model.py
+#echo=False to cut down on terminal output so it's easier to see error messages
 model.db.create_all() #create db using model.py
 
 #Note: datetime in the violations.json and complaints.json file is
@@ -48,11 +49,11 @@ for complaint in complaints_data:
         complaint.get('complaint_description') #returns None if there
         #isn't a complaint_description
     )
-    building_id = '1' #added for testing reasons
-    # building_id = complaint['building_id']
+    # building_id = '1' #added for testing reasons
+    building = Building.query.filter_by(Building.street_number, Building.street_name, Building.street_suffix, Building.zip_code).first()
     date_filed = datetime.strptime(complaint['date_filed'], '%Y-%m-%dT%H:%M:%S.%f')
 
-    db_complaint = crud.create_complaint(complaint_number, building_id,
+    db_complaint = crud.create_complaint(complaint_number, building,
                                         complaint_description,
                                         date_filed) 
                                         #will need to add building_id
@@ -77,11 +78,11 @@ for violation in violations_data:
     nov_item_description = None
     if 'nov_item_description' in violation:
         nov_item_description = violation['nov_item_description']
-    building_id = '1' #added for testing purposes
+    # building = Building.query.filter_by goes here
     # building_id = violation['building_id']
     date_filed = datetime.strptime(violation['date_filed'], '%Y-%m-%dT%H:%M:%S.%f')
 
-    db_violation = crud.create_violation(complaint_number, building_id, 
+    db_violation = crud.create_violation(complaint_number, building, 
                                         nov_category_description,
                                         item, nov_item_description, 
                                         date_filed)
@@ -115,7 +116,7 @@ for n in range(10):
 for n in range(10):
     complaint_number = n
     building_id = 1
-    complaint_description = f'test complaint desc {n}'
+    complaint_description = 'test complaint desc {n}'
     date_filed = f'200{n}, 4, 3'
 
     complaint = crud.create_complaint(complaint_number, building_id, complaint_description, date_filed)
