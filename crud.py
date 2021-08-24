@@ -13,12 +13,12 @@ def create_user(email, password):
     return user
 
 
-def create_building(street_number, street_name, street_suffix, zip_code, lat_long):
+def create_building(street_number, street_name, street_suffix, zip_code, lat_long=None):
     """Create and return a new building"""
 
     building = Building(street_number=street_number, 
     street_name=street_name, street_suffix=street_suffix, zip_code=zip_code, 
-    lat_long=lat_long) #removed 'address'
+    lat_long=lat_long)
 
     db.session.add(building)
     db.session.commit()

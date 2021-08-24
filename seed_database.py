@@ -7,7 +7,9 @@ from random import choice, randint #for testing
 
 import crud
 import model
+from model import Building
 import server
+
 
 #drop and recreate the database
 os.system('dropdb tenants')
@@ -23,18 +25,6 @@ model.db.create_all() #create db using model.py
 #variable = datetime.strptime(date_str, date_format)
 #strptime means "string parse time"
 
-# #create fake buildings to add to the database
-for n in range(10):
-    street_number = f'{n}'
-    street_name = f'street{n}'
-    street_suffix = f'Av'
-    zip_code = f'94110'
-    lat_long = f'{n}'
-
-    #create building
-    building = crud.create_building(street_number, street_name, 
-    street_suffix, zip_code, lat_long)
-
 #open up json files and parse through them, item by item
 #add complaints to database
 
@@ -44,16 +34,22 @@ complaints_data = json.loads(open('data/complaints.json').read())
 complaints_in_db = []
 
 for complaint in complaints_data:
+    #if building doesn't exist in the buildings table already:
+    building = Building.query.filter(Building.street_number==complaint['street_number'], Building.street_name==complaint['street_name'], Building.street_suffix==complaint['street_suffix'], Building.zip_code==complaint['zip_code']).first()
+    if not building:
+        #then create new building
+        building = crud.create_building(complaint['street_number'], \
+                            complaint['street_name'], complaint['street_suffix'], \
+                            complaint['zip_code'])
+
     complaint_number, complaint_description = (
         complaint['complaint_number'],
         complaint.get('complaint_description') #returns None if there
         #isn't a complaint_description
     )
-    # building_id = '1' #added for testing reasons
-    building = Building.query.filter_by(Building.street_number, Building.street_name, Building.street_suffix, Building.zip_code).first()
     date_filed = datetime.strptime(complaint['date_filed'], '%Y-%m-%dT%H:%M:%S.%f')
 
-    db_complaint = crud.create_complaint(complaint_number, building,
+    db_complaint = crud.create_complaint(complaint_number, building.building_id,
                                         complaint_description,
                                         date_filed) 
                                         #will need to add building_id
@@ -66,6 +62,12 @@ violations_data = json.loads(open('data/violations.json').read())
 violations_in_db = []
 
 for violation in violations_data:
+    building = Building.query.filter(Building.street_number==violation['street_number'], Building.street_name==violation['street_name'], Building.street_suffix==violation.get('street_suffix', None), Building.zip_code==violation.get('zipcode', None)).first()
+    if not building:
+        #then create new building
+        building = crud.create_building(violation['street_number'], \
+                            violation['street_name'], violation.get('street_suffix', None), \
+                            violation.get('zipcode', None))
     if not crud.get_complaint(violation['complaint_number']):
         crud.create_complaint(violation['complaint_number'], None, None, None)
     complaint_number, nov_category_description = (
@@ -78,11 +80,10 @@ for violation in violations_data:
     nov_item_description = None
     if 'nov_item_description' in violation:
         nov_item_description = violation['nov_item_description']
-    # building = Building.query.filter_by goes here
-    # building_id = violation['building_id']
+
     date_filed = datetime.strptime(violation['date_filed'], '%Y-%m-%dT%H:%M:%S.%f')
 
-    db_violation = crud.create_violation(complaint_number, building, 
+    db_violation = crud.create_violation(complaint_number, building.building_id, 
                                         nov_category_description,
                                         item, nov_item_description, 
                                         date_filed)
@@ -108,26 +109,5 @@ for n in range(10):
         rating = i
         landlord_name = f'Landlord{i}'
 
-
         crud.create_review(building_id, user_id, review_date, review_text, rating, landlord_name)
         #also how do I code it in model.py so that the review_date is set automatically?
-
-#create fake complaints
-for n in range(10):
-    complaint_number = n
-    building_id = 1
-    complaint_description = 'test complaint desc {n}'
-    date_filed = f'200{n}, 4, 3'
-
-    complaint = crud.create_complaint(complaint_number, building_id, complaint_description, date_filed)
-
-#create fake violations
-for n in range(10):
-    complaint_number = n
-    building_id = 1
-    nov_category_description = f'test nov item desc {n}'
-    item = f'test item {n}'
-    nov_item_description = f'test item description {n}'
-    date_filed = f'200{n}, 4, 3'
-    
-    violation = crud.create_violation(complaint_number, building_id, nov_category_description, item, nov_item_description, date_filed)

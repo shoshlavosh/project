@@ -40,9 +40,9 @@ class Building(db.Model):
 
     street_number = db.Column(db.String) #it's str in the dataset, should I change it to int?
     street_name = db.Column(db.String)
-    street_suffix = db.Column(db.String)
-    zip_code = db.Column(db.String) #it's str in the dataset, should I change it to int?
-    lat_long = db.Column(db.Integer)
+    street_suffix = db.Column(db.String, nullable =True)
+    zip_code = db.Column(db.String, nullable=True) #it's str in the dataset, should I change it to int?
+    lat_long = db.Column(db.Integer, nullable=True)
 
     #relationships
     complaints = db.relationship("Complaint")
