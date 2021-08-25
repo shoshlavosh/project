@@ -99,15 +99,12 @@ for n in range(10):
 
 
     #create reviews for user
-    for i in range(10):
+    # for i in range(10):
 
-        # review__id = f'Test {i} review' #the above fake users didn't need this
-        building_id = 1 
-        user_id = 1
-        review_date = f'200{i}, 4, 3'
-        review_text = 'test'
-        rating = i
-        landlord_name = f'Landlord{i}'
+review_date = '2004, 4, 3'
+review_text = 'test'
+rating = '1'
+landlord_name = 'Landlord'
 
-        crud.create_review(building_id, user_id, review_date, review_text, rating, landlord_name)
-        #also how do I code it in model.py so that the review_date is set automatically?
+crud.create_review(building.building_id, user.user_id, review_date, review_text, rating, landlord_name)
+#also how do I code it in model.py so that the review_date is set automatically?

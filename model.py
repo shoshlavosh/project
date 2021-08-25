@@ -52,7 +52,9 @@ class Building(db.Model):
 
     def __repr__(self):
         """Show info about a building"""
-        return f'<Building building_id={self.building_id} address={self.street_number} {self.street_name} {self.street_suffix} {self.zip_code}>'
+        return f'<Building building_id={self.building_id} \
+                    address={self.street_number} {self.street_name} \
+                    {self.street_suffix} {self.zip_code}>'
     
 
 class Complaint(db.Model):
@@ -65,20 +67,18 @@ class Complaint(db.Model):
     building_id = db.Column(db.Integer, 
                             db.ForeignKey('buildings.building_id'),
                             nullable=True)
-    # violation_id = db.Column(db.Integer,
-    #                         db.ForeignKey('violations.violation_id'))
     complaint_description = db.Column(db.String, nullable=True)
     date_filed = db.Column(db.DateTime, nullable=True) #convert from str to 
                                         #datetime obj (see geeksforgeeks)
                                         #link from Jennifer
                                         #format '2002, 4, 3'
-
-    # building = db.relationship("Building", uselist=False) #relationship
     violations = db.relationship("Violation", uselist=False)
 
     def __repr__(self):
         """Show a complaint"""
-        return f'<Complaint complaint_number={self.complaint_number} building_id={self.building_id} complaint_description={self.complaint_description}>'
+        return f'<Complaint complaint_number={self.complaint_number}, \
+                            complaint_description={self.complaint_description}, \
+                            date_filed={self.date_filed}>'
 
 
 class Violation(db.Model):
@@ -107,7 +107,11 @@ class Violation(db.Model):
 
     def __repr__(self):
         """Show a violation"""
-        return f'<Violation complaint_number={self.complaint_number} building_id={self.building_id} complaint_description={self.complaint_description}>'
+        return f'<Violation complaint_number={self.complaint_number},\
+                                        nov_category_description = {self.nov_category_description}, \
+                                        item = {self.item}, \
+                                        nov_item_description = {self.nov_item_description}, \
+                                        date_filed = {self.date_filed}>'
 
 
 class Review(db.Model):
@@ -134,7 +138,9 @@ class Review(db.Model):
 
     def __repr__(self):
         """Show a review"""
-        return f'<Review review_id={self.review_id} building_id={self.building_id} review_text={self.review_text}>'
+        return f'<Review review_id={self.review_id} \
+                    building_id={self.building_id} \
+                    review_text={self.review_text}>'
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///tenants", echo=True):

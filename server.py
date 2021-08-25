@@ -35,13 +35,9 @@ def show_building(building_id):
     """Show details of a particular building"""
 
     building = crud.get_building_by_id(building_id)
-    # complaints = Complaint.query.filter(Building.building_id==building_id).all()
-    # violations = Violation.query.filter(Building.building_id==building_id).all()
-    # reviews = Review.query.filter(Building.building_id==building_id).all()
 
     return render_template("building_details.html", building=building) 
-    # complaints=complaints)
-    # , violations=violations, reviews=reviews)
+
 
 
 if __name__ == '__main__':
