@@ -7,7 +7,7 @@
       <!-- css style sheet link goes here-->
       <script src="http://code.jquery.com/jquery.js"></script>
       
-      {% block head %} This is block head content in base.html {% endblock %}
+      {% block head %}{% endblock %}
   </head>
   <body>
       {% for msg in get_flashed_messages() %}
@@ -15,8 +15,8 @@
           {{ msg }}
         </p>
       {% endfor %}
-      {% block body %} This is block body in base.html {% endblock %}
+      {% block body %}{% endblock %}
 
-      {% block after_body %} This is block after_body in base.html {% endblock %}
+      {% block after_body %}{% endblock %}
   </body>
 </html>

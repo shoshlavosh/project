@@ -25,6 +25,13 @@ def get_user_by_id(user_id):
     return User.query.options(db.joinedload('reviews')).get(user_id)
 
 
+def get_user_by_email(email):
+    """Returns a user by their email"""
+
+    # return User.query.options(db.joinedload('reviews')).get(email)
+    return User.query.filter(User.email == email).first()
+
+
 def create_building(street_number, street_name, street_suffix, zip_code, lat_long=None):
     """Create and return a new building"""
 
