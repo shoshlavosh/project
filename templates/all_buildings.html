@@ -6,7 +6,7 @@
 <ul>
 {% for building in buildings %}
   <!-- <li>{{ building }}</li> -->
-  <li>
+  <li> 
       <a href="/buildings/{{ building.building_id }}">Building address:</a>
       {{ building.street_number}} {{ building.street_name }} 
       {{ building.zip_code}}
@@ -14,12 +14,3 @@
 {% endfor %}
 </ul>
 {% endblock body %}
-
-<!-- Next:
-add HTML to format your movies as items in a bulleted list. -done
-
-Each item in the list should display the movie’s title in a link 
-that should take them to a route (that you haven’t created yet) 
-called /movies/<movie_id>.
-
- -->

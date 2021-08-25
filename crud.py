@@ -13,6 +13,18 @@ def create_user(email, password):
     return user
 
 
+def get_users():
+    """Return all users."""
+
+    return User.query.all()
+
+
+def get_user_by_id(user_id):
+    """Returns a user by their user id"""
+
+    return User.query.options(db.joinedload('reviews')).get(user_id)
+
+
 def create_building(street_number, street_name, street_suffix, zip_code, lat_long=None):
     """Create and return a new building"""
 
@@ -29,6 +41,15 @@ def get_buildings():
     """Return all buildings"""
 
     return Building.query.all()
+
+
+def get_building_by_id(building_id):
+    """Returns a building by its building_id"""
+
+    return Building.query.options(db.joinedload('complaints'))\
+                        .options(db.joinedload('violations'))\
+                        .options(db.joinedload('reviews'))\
+                        .get(building_id)
 
 
 def create_complaint(complaint_number, building_id, complaint_description, date_filed):
@@ -79,17 +100,6 @@ def create_review(building_id, user_id, review_date, review_text, rating, landlo
     db.session.commit()
 
     return review
-
-
-def get_building_by_id(building_id):
-    """Returns a building by its building_id"""
-
-    return Building.query.options(db.joinedload('complaints'))\
-                        .options(db.joinedload('violations'))\
-                        .options(db.joinedload('reviews'))\
-                        .get(building_id)
-
-
 
 
 if __name__ == '__main__':
