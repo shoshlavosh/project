@@ -99,7 +99,7 @@ def create_violation(complaint_number, building_id, nov_category_description, it
     return violation
 
 
-def create_review(building_id, user_id, review_date, review_text, rating, landlord_name):
+def create_review(building_id, user_id, review_date, review_text, rating=None, landlord_name=None):
     """Create and return a new review."""
 
     review = Review(building_id=building_id, 

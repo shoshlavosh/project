@@ -5,6 +5,8 @@ from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db
 import crud
 
+from datetime import datetime
+
 from jinja2 import StrictUndefined #shows errors if there's an undefined variable
 
 app = Flask(__name__) #new instance of Flask class assigned to app variable
@@ -99,17 +101,22 @@ def handle_login():
 
 #how do I get this to pull info from user and building
 #since user is logged in and on a building's page
-#(staff (Drue)'s recommendation was to create review on existing 
-#building page for MVP)
-# @app.route("/review", methods=["POST"])
-# def create_review():
-#     """Add a review to a building's page"""
+@app.route("/review/<building_id>", methods=["POST"])
+def create_review(building_id):
+    """Add a review to a building's page"""
 
-#     review_text = request.form['review_text']
+    building = crud.get_building_by_id(building_id)
 
-#     review = crud.create_review(review_text)
+    user = crud.get_user_by_email(session.get("email"))
 
-#     return redirect("/buildings/<building_id")
+    review_text = request.form['review_text']
+
+    review = crud.create_review(building_id=building_id, 
+                                user_id='1', #this works if I put in a default
+                                review_date=datetime.now(), #how to format this
+                                review_text=review_text)
+
+    return render_template("building_details.html", building=building)
 
 
 if __name__ == '__main__':

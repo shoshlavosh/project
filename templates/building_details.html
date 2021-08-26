@@ -33,7 +33,8 @@
  <br>
 <!-- create a review on a specific building's page -->
   <h3>Create a Review</h3>
-  <form action="/review" method="POST">
+  <form action="/review/{{ building.building_id }}" method="POST"> 
+    <!-- need user_id passed in to building details template -->
       <p>
       <label>Enter your review text here:</label>
       </p>

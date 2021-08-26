@@ -127,7 +127,7 @@ class Review(db.Model):
                             #should be created if there isn't one already
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     review_date = db.Column(db.DateTime) #format '2002, 4, 3' 
-                                        #should be automatically generated
+                                         #automatically generated
     review_text = db.Column(db.String)
     rating = db.Column(db.Integer, nullable=True) #this is for 2nd sprint
     landlord_name = db.Column(db.String, nullable=True) 
@@ -139,6 +139,7 @@ class Review(db.Model):
     def __repr__(self):
         """Show a review"""
         return f'<Review review_id={self.review_id} \
+                    review_date={self.review_date} \
                     building_id={self.building_id} \
                     review_text={self.review_text}>'
 
