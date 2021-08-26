@@ -39,6 +39,10 @@ def create_building(street_number, street_name, street_suffix, zip_code, lat_lon
     street_name=street_name, street_suffix=street_suffix, zip_code=zip_code, 
     lat_long=lat_long)
 
+    #for 2nd sprint:
+    #search for address, case-insensitive, if it exists, 
+    #return that building. if not, create new building
+
     db.session.add(building)
     db.session.commit()
 
@@ -107,6 +111,18 @@ def create_review(building_id, user_id, review_date, review_text, rating, landlo
     db.session.commit()
 
     return review
+
+
+def get_reviews():
+    """Return all reviews"""
+
+    return Review.query.all()
+
+
+def get_review_by_id(building_id): 
+    """Returns a review by its review id"""
+
+    return Review.query.options(db.joinedload('users')).filter_by(building_id)
 
 
 if __name__ == '__main__':

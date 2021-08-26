@@ -9,6 +9,7 @@
   <li> 
       <a href="/buildings/{{ building.building_id }}">Building address:</a>
       {{ building.street_number}} {{ building.street_name }} 
+      {{ building.street_suffix }}
       {{ building.zip_code}}
   </li>
 {% endfor %}

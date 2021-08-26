@@ -77,6 +77,41 @@ def register_user():
     return redirect("/")
 
 
+@app.route("/login", methods=['POST'])
+def handle_login():
+    """Log user in"""
+
+    email = request.form['email'] 
+    password = request.form['password']
+    #note: solution used request.form.get()
+
+    user = crud.get_user_by_email(email)
+
+    if not user or user.password != password:
+        flash("Error: wrong password.")
+        return redirect("/") #redirects to homepage
+    
+    else:
+        session['user_email'] = user.email #adds primary key to Flask session
+        flash(f'Logged in. Welcome back, {user.email}!')
+        return redirect("/") #redirect to review page
+
+
+#how do I get this to pull info from user and building
+#since user is logged in and on a building's page
+#(staff (Drue)'s recommendation was to create review on existing 
+#building page for MVP)
+# @app.route("/review", methods=["POST"])
+# def create_review():
+#     """Add a review to a building's page"""
+
+#     review_text = request.form['review_text']
+
+#     review = crud.create_review(review_text)
+
+#     return redirect("/buildings/<building_id")
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(debug=True, host='0.0.0.0')

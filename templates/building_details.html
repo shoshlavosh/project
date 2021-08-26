@@ -10,16 +10,42 @@
     <p>Details:</p>
 </h1>
 
-  {% for complaint in building.complaints %}
-    <p>{{ building.complaints }}</p>
-  {% endfor %}
+<h2>Complaints:</h2>
+  {% if building.complaints %}
+  <p>{{ building.complaints }}</p>
+  {% else %} 
+    None
+  {% endif %}
 
-  {% for violation in building.violations %}
+<h2>Violations:</h2>
+  {% if building.violations %}
     <p>{{ building.violations }}</p>
-  {% endfor %}
+  {% else %}
+    None
+  {% endif %}
 
-  {% for review in building.reviews %}
+<h2>Reviews:</h2>
+    {% if building.reviews %}
     <p>{{ building.reviews }}</p>
-  {% endfor %}
+    {% else %}
+       None
+    {% endif %}
+ <br>
+<!-- create a review on a specific building's page -->
+  <h3>Create a Review</h3>
+  <form action="/review" method="POST">
+      <p>
+      <label>Enter your review text here:</label>
+      </p>
+      <p>
+      <textarea name ="review_text"></textarea>
+      </p>
+      <p>
+        Landlord's name (optional):
+        <input type="text" name="landlord name">
+      </p>
+      <input type="submit"> 
+      <!-- how do I make this submit button create a new review? -->
+    </form>
 
 {% endblock %}
