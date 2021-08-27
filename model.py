@@ -139,6 +139,7 @@ class Review(db.Model):
     def __repr__(self):
         """Show a review"""
         return f'<Review review_date={self.review_date} \
+                    user_id={self.user_id} \
                     building_id={self.building_id} \
                     review_text={self.review_text} \
                     landlord_name={self.landlord_name}>'

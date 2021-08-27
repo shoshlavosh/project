@@ -108,13 +108,16 @@ def create_review(building_id):
     building = crud.get_building_by_id(building_id)
 
     user = crud.get_user_by_email(session.get("user_email"))
-    
+
     review_text = request.form['review_text']
 
+    landlord_name = request.form['landlord_name']
+
     review = crud.create_review(building_id=building_id, 
-                                user_id=user.user_id, #this works if I put in a default
+                                user_id=user.user_id,
                                 review_date=datetime.now(), #format?
-                                review_text=review_text)
+                                review_text=review_text,
+                                landlord_name=landlord_name)
 
     return render_template("building_details.html", building=building)
 
