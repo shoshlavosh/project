@@ -138,10 +138,10 @@ class Review(db.Model):
 
     def __repr__(self):
         """Show a review"""
-        return f'<Review review_id={self.review_id} \
-                    review_date={self.review_date} \
+        return f'<Review review_date={self.review_date} \
                     building_id={self.building_id} \
-                    review_text={self.review_text}>'
+                    review_text={self.review_text} \
+                    landlord_name={self.landlord_name}>'
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///tenants", echo=True):
