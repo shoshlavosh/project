@@ -62,6 +62,18 @@ def get_building_by_id(building_id):
                         .options(db.joinedload('reviews'))\
                         .get(building_id)
 
+                
+def get_building_by_address(street_number, street_name, street_suffix, zip_code):
+    """Returns a building by its street address"""
+
+    return Building.query.options(db.joinedload('complaints'))\
+                        .options(db.joinedload('violations'))\
+                        .options(db.joinedload('reviews')) \
+                        .filter(street_number==street_number,
+                                street_name==street_name, 
+                                street_suffix==street_suffix, 
+                                zip_code==zip_code).first()
+
 
 def create_complaint(complaint_number, building_id, complaint_description, date_filed):
     """Create and return a new complaint"""

@@ -34,7 +34,6 @@
 <!-- create a review on a specific building's page -->
   <h3>Create a Review</h3>
   <form action="/review/{{ building.building_id }}" method="POST"> 
-    <!-- need user_id passed in to building details template -->
       <p>
       <label>Enter your review text here:</label>
       </p>
@@ -46,7 +45,6 @@
         <input type="text" name="landlord_name">
       </p>
       <input type="submit"> 
-      <!-- how do I make this submit button create a new review? -->
     </form>
 
 {% endblock %}

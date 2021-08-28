@@ -1,20 +1,22 @@
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %} Create a Review {% endblock %} -->
 <!-- create review form -->
-<!-- {% block body %}
+{% block body %}
 <h1>Create a Review</h1>
-
-<form>
-<! for sprint 2: -->
-    <!-- <label>Enter Address</label>
+<form action="/review" method='POST'>
+    <label>Enter Address Details</label>
     <p>
     Street number:
-    <input type="text" name ="street number">
-</p>
+    <input type="text" name ="street_number">
+    </p>
     Street name:
-    <input type="text" name="street name">
-    <select name="street suffix">
+    <input type="text" name="street_name">
+    <br>
+    (do not enter apostrophes - O'Farrell should be Ofarrell)
+    <p>
+    Street suffix:
+    <select name="street_suffix">
     <option value="Av">Av</option>
     <option value="St">St</option>
     <option value="Wy">Wy</option>
@@ -22,10 +24,28 @@
     <option value="Bl">Bl</option>
     <option value="Pk">Pk</option>
     <option value="Dr">Dr</option>
-    </select> -->
-
-    <!-- <label>Enter your review text here:</label>
-    <textarea name ="review-text"></textarea>
+    </select>
+    </p>
+    <p>
+    Zip code:
+    <input type="text" name ="zip_code">
+    </p>
+    <input type="submit">
 </form>
+    <!-- <br> -->
+    <!-- check to see if building is in database, if not create new building -->
+    <!-- for sprint 2: check Google Maps for building (instead of database) -->
+<!-- <form action="/review/building_id" method="POST"> 
+    <label>Enter your review text here:</label>
+      </p>
+      <p>
+      <textarea name ="review_text"></textarea>
+      </p>
+      <p>
+        Landlord's name (optional): <br>
+        <input type="text" name="landlord_name">
+      </p>
+      <input type="submit"> 
+</form> -->
 
-{% endblock %} --> 
+{% endblock %} 

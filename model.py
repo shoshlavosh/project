@@ -35,9 +35,6 @@ class Building(db.Model):
     building_id = db.Column(db.Integer,
                             autoincrement=True,
                             primary_key=True)
-    # address = db.Column(db.String) #create using fields below: street_number etc.
-    #                     # unique=True? 
-
     street_number = db.Column(db.String) #it's str in the dataset, should I change it to int?
     street_name = db.Column(db.String)
     street_suffix = db.Column(db.String, nullable =True)

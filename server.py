@@ -96,11 +96,31 @@ def handle_login():
     else:
         session['user_email'] = user.email #adds primary key to Flask session
         flash(f'Logged in. Welcome back, {user.email}!')
-        return redirect("/") #redirect to review page
+        return render_template("create_review.html") #redirect to review page
 
 
-#how do I get this to pull info from user and building
-#since user is logged in and on a building's page
+@app.route("/review", methods=['POST']) #route and methods?
+def handle_address():
+    """Handle address entered by a user"""
+
+    street_number = request.form.get('street_number')
+    street_name = request.form.get('street_name')
+    street_suffix = request.form.get('street_suffix')
+    zip_code = request.form.get('zip_code')
+
+    building = crud.get_building_by_address(street_number, street_name, 
+                                            street_suffix, zip_code)
+    if not building:
+        building = crud.create_building(street_number, street_name, 
+                            street_suffix, zip_code)
+        flash(f'New building created: {building.building_id}')
+        
+    #needs a post request
+
+    return redirect(f"/review/{building.building_id}") #just flash message that new building was created
+                                #stay on the create_review page
+
+
 @app.route("/review/<building_id>", methods=["POST"])
 def create_review(building_id):
     """Add a review to a building's page"""
