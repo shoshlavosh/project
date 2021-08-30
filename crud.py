@@ -69,10 +69,10 @@ def get_building_by_address(street_number, street_name, street_suffix, zip_code)
     return Building.query.options(db.joinedload('complaints'))\
                         .options(db.joinedload('violations'))\
                         .options(db.joinedload('reviews')) \
-                        .filter(street_number==street_number,
-                                street_name==street_name, 
-                                street_suffix==street_suffix, 
-                                zip_code==zip_code).first()
+                        .filter_by(street_number=street_number). \
+                        filter_by(street_name=street_name). \
+                        filter_by(street_suffix=street_suffix). \
+                        filter_by(zip_code=zip_code).first()
 
 
 def create_complaint(complaint_number, building_id, complaint_description, date_filed):

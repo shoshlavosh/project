@@ -103,22 +103,20 @@ def handle_login():
 def handle_address():
     """Handle address entered by a user"""
 
-    street_number = request.form.get('street_number')
-    street_name = request.form.get('street_name')
-    street_suffix = request.form.get('street_suffix')
-    zip_code = request.form.get('zip_code')
+    street_number = request.form['street_number']
+    street_name = request.form['street_name']
+    street_suffix = request.form['street_suffix']
+    zip_code = request.form['zip_code']
 
     building = crud.get_building_by_address(street_number, street_name, 
                                             street_suffix, zip_code)
+                                        
     if not building:
         building = crud.create_building(street_number, street_name, 
                             street_suffix, zip_code)
-        flash(f'New building created: {building.building_id}')
-        
-    #needs a post request
+        flash(f'New building created: Building ID #{building.building_id}')
 
-    return redirect(f"/review/{building.building_id}") #just flash message that new building was created
-                                #stay on the create_review page
+    return redirect(f"/buildings/{building.building_id}") 
 
 
 @app.route("/review/<building_id>", methods=["POST"])
