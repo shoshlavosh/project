@@ -38,6 +38,10 @@ def show_building(building_id):
 
     building = crud.get_building_by_id(building_id)
 
+    # print("*"*20)
+    # print(building.reviews[0].review_date.strftime('%Y-%m-%d'))
+    # print("*"*20)
+
     return render_template("building_details.html", building=building) 
 
 
@@ -85,17 +89,24 @@ def handle_login():
 
     email = request.form['email'] 
     password = request.form['password']
-    #note: solution used request.form.get()
+    #note: lab exercise solution used request.form.get()
 
     user = crud.get_user_by_email(email)
 
-    if not user or user.password != password:
+    if not user:
+        flash("Error: This user does not exist.")
+        flash("Please create an account below.")
+        return redirect("/")
+
+    if user.password != password:
         flash("Error: wrong password.")
         return redirect("/") #redirects to homepage
     
     else:
-        session['user_email'] = user.email #adds primary key to Flask session
+        session['user_email'] = user.email #adds key to Flask session
         flash(f'Logged in. Welcome back, {user.email}!')
+        #maybe change this to return a menu template where user can 
+        #choose to search for an address, create a review, etc.
         return render_template("create_review.html") #redirect to review page
 
 
@@ -116,7 +127,8 @@ def handle_address():
                             street_suffix, zip_code)
         flash(f'New building created: Building ID #{building.building_id}')
 
-    return redirect(f"/buildings/{building.building_id}") 
+    return redirect(f"/buildings/{building.building_id}") #redirects to 
+                                                        #building's page
 
 
 @app.route("/review/<building_id>", methods=["POST"])
@@ -127,13 +139,18 @@ def create_review(building_id):
 
     user = crud.get_user_by_email(session.get("user_email"))
 
+    if not user:
+        flash("Error: Please log in to leave a review.")
+        return redirect("/") #redirects to homepage
+    
+
     review_text = request.form['review_text']
 
     landlord_name = request.form['landlord_name']
 
     review = crud.create_review(building_id=building_id, 
                                 user_id=user.user_id,
-                                review_date=datetime.now(), #format?
+                                review_date=datetime.now().strftime('%Y-%m-%d'), #format?
                                 review_text=review_text,
                                 landlord_name=landlord_name)
 

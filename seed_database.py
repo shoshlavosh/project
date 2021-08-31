@@ -97,14 +97,10 @@ for n in range(10):
 
     user = crud.create_user(email, password)
 
+#test review
+# review_date = '2004, 4, 3'
+# review_text = 'test'
+# rating = '1'
+# landlord_name = 'Landlord'
 
-    #create reviews for user
-    # for i in range(10):
-
-review_date = '2004, 4, 3'
-review_text = 'test'
-rating = '1'
-landlord_name = 'Landlord'
-
-crud.create_review(building.building_id, user.user_id, review_date, review_text, rating, landlord_name)
-#also how do I code it in model.py so that the review_date is set automatically?
+# crud.create_review(building.building_id, user.user_id, review_date, review_text, rating, landlord_name)

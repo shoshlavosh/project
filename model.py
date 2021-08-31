@@ -100,7 +100,7 @@ class Violation(db.Model):
                                         #format '2002, 4, 3'
 
     # building = db.relationship("Building") 
-    complaints = db.relationship("Complaint", uselist=True) 
+    complaints = db.relationship("Complaint", uselist=True, back_populates="violations") 
 
     def __repr__(self):
         """Show a violation"""
@@ -130,8 +130,8 @@ class Review(db.Model):
     landlord_name = db.Column(db.String, nullable=True) 
 
     #relationships
-    building = db.relationship("Building")
-    user = db.relationship("User")
+    building = db.relationship("Building", back_populates="reviews") #added back_populates
+    user = db.relationship("User", back_populates="review")
 
     def __repr__(self):
         """Show a review"""
