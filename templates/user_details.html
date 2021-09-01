@@ -5,9 +5,10 @@
 {% block body %}
 <h1>{{ user.email }}</h1>
 
-<!-- {% for review in user.reviews %} -->
 <p>
+  {% if user.reviews %}
   {{ user.reviews }}
+  {% endif %}
 </p>
-{% endfor %}
+
 {% endblock %}

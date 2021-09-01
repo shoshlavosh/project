@@ -17,13 +17,21 @@ class FlaskTests(unittest.TestCase):
         """Tear down that runs after every test"""
 
         db.session.close()
-        db.drop_all()
+        db.drop_all() 
 
     def test_homepage(self):
         """Test whether user can access the homepage"""
 
         result = self.client.get("/")
         self.assertIn(b"Tenant Helper", result.data)
+
+    def test_login(self):
+        """Test whether login works"""
+
+        result = self.client.post("/login", 
+                                data={"email": "user0@test.com", "password": "test"},
+                                follow_redirects=True)
+        self.assertIn(b"Create", result.data)
 
 
 if __name__ == "__main__":

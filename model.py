@@ -20,7 +20,7 @@ class User(db.Model):
     password = db.Column(db.String)
 
     #relationship
-    review = db.relationship("Review")
+    reviews = db.relationship("Review", back_populates="user")
 
     def __repr__(self):
         """Show info about user"""
@@ -44,7 +44,7 @@ class Building(db.Model):
     #relationships
     complaints = db.relationship("Complaint")
     violations = db.relationship("Violation")
-    reviews = db.relationship("Review")
+    reviews = db.relationship("Review", back_populates="building")
 
 
     def __repr__(self):
@@ -131,7 +131,7 @@ class Review(db.Model):
 
     #relationships
     building = db.relationship("Building", back_populates="reviews") #added back_populates
-    user = db.relationship("User", back_populates="review")
+    user = db.relationship("User", back_populates="reviews")
 
     def __repr__(self):
         """Show a review"""

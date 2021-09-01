@@ -22,7 +22,8 @@ def get_users():
 def get_user_by_id(user_id):
     """Returns a user by their user id"""
 
-    return User.query.options(db.joinedload('reviews')).get(user_id)
+    # return User.query.options(db.joinedload('reviews')).get(user_id)
+    return User.query.get(user_id)
 
 
 def get_user_by_email(email):
