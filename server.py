@@ -157,6 +157,13 @@ def create_review(building_id):
     return render_template("building_details.html", building=building)
 
 
+@app.route("/map")
+def show_map():
+    """Show Google Map"""
+
+    return render_template("map.html")
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(debug=True, host='0.0.0.0')

@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
 
 {% block head %}
-  <!-- <script src="/static/js/maps.js"></script> -->
+<!-- stylesheet css link goes here -->
+  <script src="/static/js/maps.js"></script>
 
   <!-- commented out script below loads the Google Maps & Geocoding API -->
     <!-- Note: the API is restricted to my IP address so if that gets
     changed by my internet service provider, or if I move, I'll
     need to update it here: https://console.cloud.google.com/apis/credentials?project=crucial-gasket-323421&supportedpurview=project 
     Otherwise my map-related code won't work.-->
-    <!-- See Google Maps lecture handout for details on how to construct the code -->
-    <!-- <script
-    async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNOVjw-EmMpGalziFFBebrwcjCnu1Lr_M&callback=CALLBACK">
-    </script> -->
+    <!-- CALLBACK: name of a function to execute after Maps API finishes loading-->
+    <script
+    async defer 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNOVjw-EmMpGalziFFBebrwcjCnu1Lr_M&callback=initMap">
+    </script>
+{% endblock %}
+
+{% block body %}
+
+<main>
+  <section class="map">
+    <div id="map"></div>
+  </section>
+</main>
+
 {% endblock %}

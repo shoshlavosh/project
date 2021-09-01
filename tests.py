@@ -34,5 +34,16 @@ class FlaskTests(unittest.TestCase):
         self.assertIn(b"Create", result.data)
 
 
+    # def load_tests(loader, tests, ignore):
+    #     """Also run our doctests and file-based doctests.
+
+    #     This function name, ``load_tests``, is required.
+    #     """
+
+    #     tests.addTests(doctest.DocTestSuite(arithmetic))
+    #     tests.addTests(doctest.DocFileSuite("tests.txt"))
+    #     return tests
+
+
 if __name__ == "__main__":
     unittest.main()
