@@ -12,21 +12,40 @@
 
 <h2>Complaints:</h2>
   {% if building.complaints %}
-  <p>{{ building.complaints }}</p>
+    {% for complaint in complaints %}
+      <p>Complaint number: {{ complaint.complaint_number }} <br>
+      Complaint description: {{ complaint.complaint_description }} <br>
+      Date filed: {{ complaint.date_filed }} <br>
+      </p>
+    {% endfor %}
   {% else %} 
     None
   {% endif %}
 
 <h2>Violations:</h2>
   {% if building.violations %}
-    <p>{{ building.violations }}</p>
+    {% for violation in violations %}
+    <p>Complaint number: {{ violation.complaint_number }} <br>
+    Violation category: {{ violation.nov_category_description }} <br>
+    Violation item: {{ violation.item }} <br>
+    Violation description: {{ violation.nov_item_description }} <br>
+    Date filed: {{ violation.date_filed }} <br>
+  </p>
+    {% endfor %}
   {% else %}
     None
   {% endif %}
 
 <h2>Reviews:</h2>
     {% if building.reviews %}
-    <p>{{ building.reviews }}</p>
+    {% for review in reviews %}
+    <p>
+      Review date: {{ review.review_date }} <br>
+      Review: {{ review.review_text }} <br>
+      Rating: {{ review.rating }} <br>
+      Landlord name: {{ review.landlord_name }} <br>
+    </p>
+    {% endfor %}
     {% else %}
        None
     {% endif %}

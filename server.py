@@ -42,7 +42,10 @@ def show_building(building_id):
     # print(building.reviews[0].review_date.strftime('%Y-%m-%d'))
     # print("*"*20)
 
-    return render_template("building_details.html", building=building) 
+    return render_template("building_details.html", building=building,
+                            complaints=building.complaints, 
+                            violations=building.violations,
+                            reviews=building.reviews) 
 
 
 @app.route("/users")

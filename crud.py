@@ -40,14 +40,11 @@ def create_building(street_number, street_name, street_suffix, zip_code, lat_lon
     street_name=street_name, street_suffix=street_suffix, zip_code=zip_code, 
     lat_long=lat_long)
 
-    #for 2nd sprint:
-    #search for address, case-insensitive, if it exists, 
-    #return that building. if not, create new building
-
     db.session.add(building)
     db.session.commit()
 
     return building
+    
 
 def get_buildings():
     """Return all buildings"""
