@@ -33,7 +33,7 @@ def get_user_by_email(email):
     return User.query.filter(User.email == email).first()
 
 
-def create_building(street_number, street_name, street_suffix, zip_code, lat_long=None):
+def create_building(street_number, street_name, street_suffix, zip_code, lat_long=None): 
     """Create and return a new building"""
 
     building = Building(street_number=street_number, 

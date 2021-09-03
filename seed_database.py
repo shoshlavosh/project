@@ -62,12 +62,12 @@ violations_data = json.loads(open('data/violations.json').read())
 violations_in_db = []
 
 for violation in violations_data:
-    building = Building.query.filter(Building.street_number==violation['street_number'], Building.street_name==violation['street_name'], Building.street_suffix==violation.get('street_suffix', None), Building.zip_code==violation.get('zipcode', None)).first()
+    building = Building.query.filter(Building.street_number==violation['street_number'], Building.street_name==violation['street_name'], Building.street_suffix==violation.get('street_suffix', None), Building.zip_code==violation.get('zip_code', None)).first()
     if not building:
         #then create new building
         building = crud.create_building(violation['street_number'], \
                             violation['street_name'], violation.get('street_suffix', None), \
-                            violation.get('zipcode', None))
+                            violation.get('zip_code', None))
     if not crud.get_complaint(violation['complaint_number']):
         crud.create_complaint(violation['complaint_number'], None, None, None)
     complaint_number, nov_category_description = (

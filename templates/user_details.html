@@ -7,7 +7,16 @@
 
 <p>
   {% if user.reviews %}
-  {{ user.reviews }}
+  {% for review in user.reviews %}
+    <p>
+      Review date: {{ review.review_date }} <br>
+      Review: {{ review.review_text }} <br>
+      Rating: {{ review.rating }} <br>
+      Landlord name: {{ review.landlord_name }} <br>
+    </p>
+    {% endfor %}
+  {% else %}
+    No reviews for this user
   {% endif %}
 </p>
 

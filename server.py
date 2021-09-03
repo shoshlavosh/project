@@ -110,10 +110,10 @@ def handle_login():
         flash(f'Logged in. Welcome back, {user.email}!')
         #maybe change this to return a menu template where user can 
         #choose to search for an address, create a review, etc.
-        return render_template("create_review.html") #redirect to review page
+        return render_template("address_search.html") 
 
 
-@app.route("/review", methods=['POST']) #route and methods?
+@app.route("/address_search", methods=['POST']) 
 def handle_address():
     """Handle address entered by a user"""
 

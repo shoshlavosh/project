@@ -38,7 +38,7 @@
 
 <h2>Reviews:</h2>
     {% if building.reviews %}
-    {% for review in reviews %}
+    {% for review in building.reviews %}
     <p>
       Review date: {{ review.review_date }} <br>
       Review: {{ review.review_text }} <br>
