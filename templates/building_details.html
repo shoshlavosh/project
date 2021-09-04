@@ -7,6 +7,25 @@
 {% block body %}
 <h1>{{ building.street_number }} {{ building.street_name }}
     {{ building.street_suffix }}, {{ building.zip_code }}
+
+
+  <script src="/static/js/maps.js"></script>
+  <!-- Note: the below  API is restricted to my IP address so if that gets
+  changed by my internet service provider, or if I move, I'll
+  need to update it here: https://console.cloud.google.com/apis/credentials?project=crucial-gasket-323421&supportedpurview=project 
+  Otherwise my map-related code won't work.-->
+  <!-- CALLBACK: name of a function to execute after Maps API finishes loading-->
+  <script
+  async defer 
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNOVjw-EmMpGalziFFBebrwcjCnu1Lr_M&callback=initMap">
+  </script>
+  
+  <main>
+    <section class="map">
+      <div id="map" style="position: relative;height: 200px;"></div>
+  </section>
+  </main>
+
     <p>Details:</p>
 </h1>
 
@@ -64,6 +83,7 @@
         <input type="text" name="landlord_name">
       </p>
       <input type="submit"> 
-    </form>
+    </form> <br>
+
 
 {% endblock %}
