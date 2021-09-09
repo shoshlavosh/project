@@ -4,12 +4,8 @@
 
 {% block title %} {% endblock %}
 
-{% block body %}
-<h1>{{ building.street_number }} {{ building.street_name }}
-    {{ building.street_suffix }}, {{ building.zip_code }}
-
-
-  <script src="/static/js/maps.js"></script>
+{% block head %}
+  <script src="/static/js/maps.js"></script> 
   <!-- Note: the below  API is restricted to my IP address so if that gets
   changed by my internet service provider, or if I move, I'll
   need to update it here: https://console.cloud.google.com/apis/credentials?project=crucial-gasket-323421&supportedpurview=project 
@@ -19,7 +15,14 @@
   async defer 
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNOVjw-EmMpGalziFFBebrwcjCnu1Lr_M&callback=initMap">
   </script>
-  
+{% endblock %}
+
+{% block body %}
+<h1 id="address">{{ building.street_number }} {{ building.street_name }}
+    {{ building.street_suffix }}, San Francisco, CA,  {{ building.zip_code }}
+</h1>
+
+<h1>  
   <main>
     <section class="map">
       <div id="map" style="position: relative;height: 200px;"></div>
@@ -31,7 +34,7 @@
 
 <h2>Complaints:</h2>
   {% if building.complaints %}
-    {% for complaint in complaints %}
+    {% for complaint in building.complaints %}
       <p>Complaint number: {{ complaint.complaint_number }} <br>
       Complaint description: {{ complaint.complaint_description }} <br>
       Date filed: {{ complaint.date_filed }} <br>
@@ -43,7 +46,7 @@
 
 <h2>Violations:</h2>
   {% if building.violations %}
-    {% for violation in violations %}
+    {% for violation in building.violations %}
     <p>Complaint number: {{ violation.complaint_number }} <br>
     Violation category: {{ violation.nov_category_description }} <br>
     Violation item: {{ violation.item }} <br>
