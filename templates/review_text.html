@@ -1,6 +1,6 @@
 <!-- when a review is created, it will show up like this: -->
 <p>
-  Date posted: {{ review.review_date }} <br>
+  Date posted: {{ review.review_date.strftime('%Y-%m-%d') }} <br>
   Review: {{ review.review_text }} <br>
   {% if review.landlord_name %}
   Landlord name: {{ review.landlord_name }}

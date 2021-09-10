@@ -62,7 +62,7 @@
     {% if building.reviews %}
     {% for review in building.reviews %}
     <p>
-      Date posted: {{ review.review_date }} <br>
+      Date posted: {{ review.review_date.strftime('%Y-%m-%d') }} <br>
       Review: {{ review.review_text }} <br>
       {% if review.landlord_name %}
         Landlord name: {{ review.landlord_name }}
@@ -72,7 +72,7 @@
     </p>
     {% endfor %}
     {% else %}
-       None
+      <p id="none">None</p>
     {% endif %} </div>
  <br>
 <!-- create a review on a specific building's page -->

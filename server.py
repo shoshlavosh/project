@@ -160,6 +160,10 @@ def create_review(building_id):
 
         landlord_name = request.form['landlord_name']
 
+        # if not review_text:
+        #     flash("Error: Please enter review text")
+        #     return redirect("/review/<building_id>")
+
         review = crud.create_review(building_id=building_id, 
                                 user_id=user.user_id,
                                 review_date=datetime.now().strftime('%Y-%m-%d'), #format?
