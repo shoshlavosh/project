@@ -12,7 +12,7 @@ $('#review').on('submit', (evt) => {    //listening for the "review" id. On a su
     //third argument is the function that handles the response from the first argument route
     $("#reviews").append(res); 
     $("#review_text").val(""); //this empties the form afterwards
-    $("#landlord_name").val(""); //empties this form as well
+    $("#landlord_name").val(""); //empties this part of the form as well
     // console.log($("#reviews"));
     // console.log(res);
   }); 
