@@ -34,7 +34,7 @@ function initMap() {
       });
 
       basicMap.setCenter(buildingLocation);
-      basicMap.setZoom(15);
+      basicMap.setZoom(16);
     } else {
       alert(`Geocode was unsuccessful for the following reason:${status}`);
     }

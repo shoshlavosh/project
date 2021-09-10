@@ -1,0 +1,10 @@
+
+<p>
+  Date posted: {{ review.review_date }} <br>
+  Review: {{ review.review_text }} <br>
+  {% if review.landlord_name %}
+  Landlord name: {{ review.landlord_name }}
+  {% else %}
+  Landlord name: None
+  {% endif %}
+</p>

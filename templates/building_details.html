@@ -19,7 +19,7 @@
 
 {% block body %}
 <h1 id="address">{{ building.street_number }} {{ building.street_name }}
-    {{ building.street_suffix }}, San Francisco, CA,  {{ building.zip_code }}
+    {{ building.street_suffix }}, San Francisco, CA  {{ building.zip_code }}
 </h1>
 
 <h1>  
@@ -58,35 +58,39 @@
     None
   {% endif %}
 
-<h2>Reviews:</h2>
+<div id="reviews"><h2>Reviews:</h2>
     {% if building.reviews %}
     {% for review in building.reviews %}
     <p>
-      Review date: {{ review.review_date }} <br>
+      Date posted: {{ review.review_date }} <br>
       Review: {{ review.review_text }} <br>
-      Rating: {{ review.rating }} <br>
-      Landlord name: {{ review.landlord_name }} <br>
+      {% if review.landlord_name %}
+        Landlord name: {{ review.landlord_name }}
+        {% else %}
+        Landlord name: None
+      {% endif %}
     </p>
     {% endfor %}
     {% else %}
        None
-    {% endif %}
+    {% endif %} </div>
  <br>
 <!-- create a review on a specific building's page -->
   <h3>Create a Review</h3>
-  <form action="/review/{{ building.building_id }}" method="POST"> 
+  <form data-route="/review/{{ building.building_id }}" id="review"> 
       <p>
       <label>Enter your review text here:</label>
       </p>
       <p>
-      <textarea name ="review_text"></textarea>
+      <textarea id="review_text"></textarea>
       </p>
       <p>
         Landlord's name (optional):
-        <input type="text" name="landlord_name">
+        <input type="text" id="landlord_name">
       </p>
       <input type="submit"> 
     </form> <br>
-
-
+<!-- data: ignore it in the rendering but leave it there so we can get it for another reason -->
+<script src="/static/js/review.js"></script>
+<!-- script is being imported here so that the element "review" already exists in the DOM (document object model)-->
 {% endblock %}

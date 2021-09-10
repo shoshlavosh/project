@@ -1,4 +1,4 @@
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 #render_template is called on the Jinja template, 
 #Flask will return it to the browser 
 
@@ -142,30 +142,33 @@ def handle_address():
                                                         #building's page
 
 
-@app.route("/review/<building_id>", methods=["POST"])
+@app.route("/review/<building_id>", methods=["GET", "POST"])
 def create_review(building_id):
     """Add a review to a building's page"""
 
+ 
     building = crud.get_building_by_id(building_id)
 
     user = crud.get_user_by_email(session.get("user_email"))
 
-    if not user:
-        flash("Error: Please log in to leave a review.")
-        return redirect("/") #redirects to homepage
+    if request.method == 'POST':
+        if not user:
+            flash("Error: Please log in to leave a review.")
+            return redirect("/") #redirects to homepage
     
+        review_text = request.form['review_text']
 
-    review_text = request.form['review_text']
+        landlord_name = request.form['landlord_name']
 
-    landlord_name = request.form['landlord_name']
-
-    review = crud.create_review(building_id=building_id, 
+        review = crud.create_review(building_id=building_id, 
                                 user_id=user.user_id,
                                 review_date=datetime.now().strftime('%Y-%m-%d'), #format?
                                 review_text=review_text,
                                 landlord_name=landlord_name)
+        return render_template("review_text.html", review=review) #for a POST request
 
-    return render_template("building_details.html", building=building)
+    return render_template("building_details.html", building=building) #for a GET request
+
 
 
 @app.route("/map")
