@@ -37,7 +37,7 @@
     {% for complaint in building.complaints %}
       <p>Complaint number: {{ complaint.complaint_number }} <br>
       Complaint description: {{ complaint.complaint_description }} <br>
-      Date filed: {{ complaint.date_filed }} <br>
+      Date filed: {{ complaint.date_filed.strftime('%Y-%m-%d') }} <br>
       </p>
     {% endfor %}
   {% else %} 
@@ -51,7 +51,7 @@
     Violation category: {{ violation.nov_category_description }} <br>
     Violation item: {{ violation.item }} <br>
     Violation description: {{ violation.nov_item_description }} <br>
-    Date filed: {{ violation.date_filed }} <br>
+    Date filed: {{ violation.date_filed.strftime('%Y-%m-%d') }} <br>
   </p>
     {% endfor %}
   {% else %}
@@ -76,14 +76,18 @@
     {% endif %} </div>
  <br>
 <!-- create a review on a specific building's page -->
-  <h3>Create a Review</h3>
+  <h4>Create a review for this building:</h4>
   <form data-route="/review/{{ building.building_id }}" id="review"> 
       <p>
-      <label>Enter your review text here:</label>
+      <!-- <label>Enter your review text here:</label> -->
       </p>
       <p>
-      <textarea id="review_text"></textarea>
+      <textarea id="review_text" class="form-control is-invalid" id="review_text" name ="review_text" placeholder="Enter your review text here." required></textarea>
       </p>
+      
+      <div class="invalid-feedback">
+        Please enter review text.
+      </div>
       <p>
         Landlord's name (optional):
         <input type="text" id="landlord_name">
