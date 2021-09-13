@@ -1,0 +1,31 @@
+.bghouses {
+    background: url("/static/img/joshua-hanks-MaMC5zV7uhs-unsplash.jpg") no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0.5;
+    z-index: -1;
+    filter: blur(2px);
+  }
+
+.bgpattern {
+    background: url("/static/img/crisp_paper_ruffles_@2X.png") repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 1;
+    z-index: -1;
+    /* filter: blur(2px);   */
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "urbanist", sans-serif;
+
+}

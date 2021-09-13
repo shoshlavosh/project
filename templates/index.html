@@ -3,9 +3,14 @@
     {% block title %}{% endblock %}
 
 {% block body %}
+<div class="bghouses"></div>
 <!-- header & paragraphs go here -->
     <h1>Tenant Helper</h1>
+    <!-- below is a location dot icon -->
+    <img src="/static/img/baseline_location_on_black_24dp2.png">San Francisco</img>
 
+    <!-- here is the image credit Photo by <a href="https://unsplash.com/@jhanks787?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joshua Hanks</a> on <a href="https://unsplash.com/s/photos/san-francisco?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+   -->
     <h2>Navigation</h2>
     <ul>
       <li><a href="/buildings">View all buildings</a></li>
@@ -15,12 +20,12 @@
 
     <h3>Create an Account</h3>
     <form action ='/users' method='POST'>
-      <div class="form-group">
+      <div class="form-group col-md-4">
         <label for="reg-email">Email address</label>
         <input type="email" class="form-control" id="reg-email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
       </div>
 
-      <div class="form-group">
+      <div class="form-group col-md-4">
         <label for="reg-password">Password</label>
     <input type="password" class="form-control" id="reg-password" name="password" placeholder="Create password">
       </div>
@@ -31,16 +36,17 @@
 
     <h3>Log In</h3>
     <form action='/login' method='POST'>
-        <div class="form-group">
+        <div class="form-group col-md-4">
         <label for="login-email">Email address</label>
         <input type="email" class="form-control" id="login-email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
       </div>
 
-      <div class="form-group">
+      <div class="form-group col-md-4">
         <label for="login-password">Password</label>
     <input type="password" class="form-control" id="login-password" name="password" placeholder="Enter password">
       </div>
 
         <button type='submit' class="btn btn-primary">Submit</button>
     </form>
+
 {% endblock %}
