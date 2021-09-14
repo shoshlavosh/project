@@ -30,9 +30,39 @@
           {{ msg }}
         </p>
       {% endfor %}
-      {% block body %}
+      
       <div class="container">
-        <div class="row">
+        <!-- nav bar goes here -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-info bg-gradient text-black text-decoration-underline bg-opacity-75 shadow p-3 mb-5 bg-body rounded">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Tenant Helper Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" a href="/search">Search for a building</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" a href="/buildings">View all buildings</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" a href="/users">View all users</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" a href="/map">View map</a>
+                </li>
+            </div>
+          </div>
+        </nav>
+      {% block body %}
+      
+      {% endblock %}
+        <!-- <div class="row">
           <div class="col">
             Column
           </div>
@@ -43,9 +73,7 @@
             Column
           </div>
         </div>
-      </div>
-      {% endblock %}
-
+      </div> -->
       {% block after_body %}{% endblock %}
   </body>
 </html>
