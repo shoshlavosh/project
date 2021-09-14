@@ -12,18 +12,18 @@
   }
 
 .bgpattern {
-    background: url("/static/img/crisp_paper_ruffles_@2X.png") repeat center center;
+    background: url("/static/img/crisp_paper_ruffles_@2X.png") repeat-y center center;
     background-size: cover;
+    background-repeat: repeat;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    position: absolute;
+    position: sticky;
     opacity: 1;
     z-index: -1;
     /* filter: blur(2px);   */
 }
-
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "urbanist", sans-serif;
