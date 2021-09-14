@@ -4,18 +4,20 @@
 <link rel="stylesheet" href="/static/css/all_buildings.css">
 {% endblock %}
 {% block body %} 
-<div class="bgpattern"></div>
-  <hi>All Buildings</hi>
+<div class="bg_allbuildings"></div>
+  <h3>All Buildings By Address:</h3>
 <ul>
 {% for building in buildings %}
-  <!-- <li>{{ building }}</li> -->
   <li> 
-      <a href="/buildings/{{ building.building_id }}">Building address:</a>
+      <a href="/buildings/{{ building.building_id }}">
       {{ building.street_number}} {{ building.street_name }} 
       {{ building.street_suffix }}
       {{ building.zip_code}}
+    </a>
   </li>
 {% endfor %}
 </ul>
-
+<footer>
+  Photo credit:<a href="https://unsplash.com/@mischievous_penguins?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Casey Horner</a> on <a href="https://unsplash.com/s/photos/birds-eye-san-francisco?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</footer>
 {% endblock body %}

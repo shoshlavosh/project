@@ -1,0 +1,12 @@
+.bgsearch {
+    background: url("/static/img/marten-newhall-uAFjFsMS3YY-unsplash.jpg") no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0.25;
+    z-index: -1;
+    /* filter: blur(2px); */
+  }
