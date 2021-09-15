@@ -30,11 +30,17 @@
       <div class="col-4">
         When you're looking for a place to live, it's hard to know 
         what's going on "under the hood" of a particular apartment. 
-        This website provides access to historical data from the 
-        San Francisco Department of Building Inspection.
+        This website provides access to complaints & violations data 
+        from the San Francisco Department of Building Inspection, 
+        as well as reviews from tenants like yourself. To view this 
+        data, leave a review, or read other reviews, you'll 
+        need to go to the page of a specific address, first. 
+        You can either do that by <a href="/search">searching</a> 
+        for a particular address, or by choosing a building from
+        <a href="/buildings">a list by of buildings by address</a>.
       </div>
       <br>
-    <h4>What would you like to do?</h4>
+    <h5>What would you like to do?</h5>
     <ul>
       <li><a href="/search">Search for a building</a></li>
       <li><a href="/buildings">View all buildings</a></li>
@@ -45,7 +51,7 @@
     <div class="row">
       </div>
       <div class="col-4 offset-8">
-        <h4>Create an Account</h4>
+        <h5>Create an Account</h5>
         <form action ='/users' method='POST'>
           <div class="form-group col">
             <label for="reg-email">Email address</label>
@@ -67,7 +73,7 @@
     <div class="row">
 
     <div class="col-4 offset-8">
-    <h4>Log In</h4>
+    <h5>Log In</h5>
     <form action='/login' method='POST'>
         <div class="form-group col">
         <label for="login-email">Email address</label>

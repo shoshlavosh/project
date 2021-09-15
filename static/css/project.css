@@ -11,12 +11,12 @@
     z-index: -1;
     filter: blur(1px);
   }
-
+/* if I add this, it messes up the all_buildings page :(
   body {
     height: 100%;
     width: 100%;
     position: absolute;
-  }
+  } */
 
 h1 {
     font-weight: bold; 
