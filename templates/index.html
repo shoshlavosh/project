@@ -5,64 +5,84 @@
 {% block body %}
 <div class="bghouses"></div>
 <!-- header & paragraphs go here -->
-  <div class="row justify-content-md-center">
+  <div class="row justify-content-center">
 
-    <div class="col col-lg-auto">
-      <h1>Tenant Helper</h1>
+    <div class="col col-lg text-center">
+      <h1 class="display-1">Tenant Helper</h1>
+    </div>
+
     </div>
 
   <div class="row">
-    <div class="col">
-    </div>
-    <div class="col">
+    <div class="col-4 offset-8">
       <!-- below is a location dot icon -->
     <img src="/static/img/baseline_location_on_black_24dp2.png">San Francisco</img>
     </div>
   </div>
-
-    <h3>What would you like to do?</h3>
+    <div class="row">
+      <br>
+      </div>
+      <div class="row">
+        <br>
+        </div>
+      <div class="col">
+    <h4>Welcome to Tenant Helper!</h4>
+      <div class="textbox">
+        Put blurb about website here
+      </div>
+    <h4>What would you like to do?</h4>
     <ul>
       <li><a href="/search">Search for a building</a></li>
       <li><a href="/buildings">View all buildings</a></li>
       <li><a href="/users">View all users</a></li>
       <li><a href="/map">View SF map</a></li>
     </ul>
-
-    <h3>Create an Account</h3>
-    <form action ='/users' method='POST'>
-      <div class="form-group col-md-4">
-        <label for="reg-email">Email address</label>
-        <input type="email" class="form-control" id="reg-email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+    <div class="row">
       </div>
-
-      <div class="form-group col-md-4">
-        <label for="reg-password">Password</label>
-    <input type="password" class="form-control" id="reg-password" name="password" placeholder="Create password">
+      <div class="col-4 offset-8">
+        <h4>Create an Account</h4>
+        <form action ='/users' method='POST'>
+          <div class="form-group col">
+            <label for="reg-email">Email address</label>
+            <input type="email" class="form-control" id="reg-email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+    
+          <div class="form-group col">
+            <label for="reg-password">Password</label>
+        <input type="password" class="form-control" id="reg-password" name="password" placeholder="Create password">
+          </div>
+    
+            <button type='submit' class="btn btn-primary">Submit</button>
+      
+        </form>
       </div>
+      <div class="row">
+        <br>
+      </div>
+    <div class="row">
 
-        <button type='submit' class="btn btn-primary">Submit</button>
-  
-    </form>
-
-    <h3>Log In</h3>
+    <div class="col-4 offset-8">
+    <h4>Log In</h4>
     <form action='/login' method='POST'>
-        <div class="form-group col-md-4">
+        <div class="form-group col">
         <label for="login-email">Email address</label>
         <input type="email" class="form-control" id="login-email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
       </div>
 
-      <div class="form-group col-md-4">
+      <div class="form-group col">
         <label for="login-password">Password</label>
     <input type="password" class="form-control" id="login-password" name="password" placeholder="Enter password">
       </div>
 
         <button type='submit' class="btn btn-primary">Submit</button>
     </form>
-  </div>
     <br>
     <footer>
       Photo credit:<a href="https://unsplash.com/@jhanks787?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joshua Hanks</a> on <a href="https://unsplash.com/s/photos/san-francisco?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
     </footer>
+  </div>
+    
 {% endblock %}
 
 
