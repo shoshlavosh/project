@@ -22,21 +22,21 @@
 {% endblock %}
 
 {% block body %}
-<h1 id="address">{{ building.street_number }} {{ building.street_name }}
+<h4 class="display-6" id="address">{{ building.street_number }} {{ building.street_name }}
     {{ building.street_suffix }}, San Francisco, CA  {{ building.zip_code }}
-</h1>
+</h4>
 
-<h1>  
+  
   <main>
     <section class="map">
       <div id="map" style="position: relative;height: 300px;"></div>
   </section>
   </main>
-
+<!-- <h3>
     <p>Details:</p>
-</h1>
+</h3> -->
 
-<h2>Complaints:</h2>
+<h4 class="display-6">Complaints:</h4>
   {% if building.complaints %}
     {% for complaint in building.complaints %}
       <p>Complaint number: {{ complaint.complaint_number }} <br>
@@ -48,7 +48,7 @@
     None
   {% endif %}
 
-<h2>Violations:</h2>
+  <h4 class="display-6">Violations:</h4>
   {% if building.violations %}
     {% for violation in building.violations %}
     <p>Complaint number: {{ violation.complaint_number }} <br>
@@ -62,7 +62,7 @@
     None
   {% endif %}
 
-<div id="reviews"><h2>Reviews:</h2>
+<div id="reviews"><h4 class="display-6">Reviews:</h4>
     {% if building.reviews %}
     {% for review in building.reviews %}
     <p>
@@ -92,12 +92,14 @@
       <div class="invalid-feedback">
         Please enter review text.
       </div>
-      <p>
-        Landlord's name (optional):
-        <input type="text" id="landlord_name">
-      </p>
-      <input type="submit"> 
-    </form> <br>
+      <div class="form-group col">
+        <label for="landlord_name">Landlord's name (optional):</label>
+      <input type="text" class="form-control" id="landlord_name" name="landlord_name" placeholder="Enter landlord or management company here">
+      </div>
+      
+        <button type='submit' class="btn btn-primary">Submit</button>
+      </form> 
+      <br>
 <!-- data: ignore it in the rendering but leave it there so we can get it for another reason -->
 <script src="/static/js/review.js"></script>
 <!-- script is being imported here so that the element "review" already exists in the DOM (document object model)-->
