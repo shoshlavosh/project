@@ -36,7 +36,7 @@
     <p>Details:</p>
 </h3> -->
 
-<h4 class="display-6">Complaints:</h4>
+<h4 class="display-6 mt-3">Complaints:</h4>
   {% if building.complaints %}
     {% for complaint in building.complaints %}
       <p>Complaint number: {{ complaint.complaint_number }} <br>
@@ -48,7 +48,7 @@
     None
   {% endif %}
 
-  <h4 class="display-6">Violations:</h4>
+  <h4 class="display-6 mt-3">Violations:</h4>
   {% if building.violations %}
     {% for violation in building.violations %}
     <p>Complaint number: {{ violation.complaint_number }} <br>
@@ -65,7 +65,7 @@
 <div id="reviews"><h4 class="display-6">Reviews:</h4>
     {% if building.reviews %}
     {% for review in building.reviews %}
-    <p>
+    <p class="mt-1">
       Date posted: {{ review.review_date.strftime('%Y-%m-%d') }} <br>
       Review: {{ review.review_text }} <br>
       {% if review.landlord_name %}
@@ -78,13 +78,11 @@
     {% else %}
       <p id="none">None</p>
     {% endif %} </div>
- <br>
+
 <!-- create a review on a specific building's page -->
-  <h4>Create a review for this building:</h4>
+  <h4 class="mt-3">Create a review for this building:</h4>
   <form data-route="/review/{{ building.building_id }}" id="review"> 
-      <p>
-      <!-- <label>Enter your review text here:</label> -->
-      </p>
+
       <p>
       <textarea id="review_text" class="form-control is-invalid" id="review_text" name ="review_text" placeholder="Enter your review text here." required></textarea>
       </p>
