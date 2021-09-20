@@ -1,6 +1,7 @@
 # project_tenant_helper
 
 Project Description:
+When you're looking for a place to live, it's hard to know what's going on "under the hood" of a particular apartment. Tenant Helper sources historical data about complaints and violations from the San Francisco Department of Building Inspection, and displays reviews from other tenants who've shared their experiences. Users can search for an address to view a building's data, leave a review, or read other user reviews. A building's page includes an interactive Google Map with a location marker centered on the address, and a list of complaints, violations, and reviews. Users can also create an account and log in.
 
 Tech Stack:
 * Python 
@@ -16,7 +17,7 @@ Tech Stack:
 * AJAX
 * APIs: San Francisco Department of Building Inspection, Google Maps, and Google Geocoding
 
-Features:
+FEATURES
 
 Homepage:
 * Navigation Bar
@@ -25,7 +26,6 @@ Homepage:
 * Log In
 
 Search Page:
-Search for an Address
 * Enter a street address to navigate to a building's page
 * If there isn't already a building for an address in the database, a new one will be added
 
@@ -41,8 +41,8 @@ Building Page:
 Instructions / How to Install:
 
 Set up and activate a virtual environment:
->>>virtualenv env
->>>source env/bin/activate
+>virtualenv env
+>source env/bin/activate
 
 Install frameworks & libraries:
 >pip3 install -r requirements.txt
