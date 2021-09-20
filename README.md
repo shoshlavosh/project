@@ -4,6 +4,7 @@ PROJECT DESCRIPTION:
 
 When you're looking for a place to live, it's hard to know what's going on "under the hood" of a particular apartment. Tenant Helper sources historical data about complaints and violations from the San Francisco Department of Building Inspection, and displays reviews from other tenants who've shared their experiences. Users can search for an address to view a building's data, leave a review, or read other user reviews. A building's page includes an interactive Google Map with a location marker centered on the address, and a list of complaints, violations, and reviews. Users can also create an account and log in.
 
+
 TECH STACK:
 
 * Python 
@@ -18,6 +19,7 @@ TECH STACK:
 * PostgreSQL 
 * AJAX
 * APIs: San Francisco Department of Building Inspection, Google Maps, and Google Geocoding
+
 
 FEATURES
 
@@ -38,6 +40,7 @@ Building Page:
 * Shows an interactive Google Map with a marker centered on the address
 * Lists any complaints, violations, and reviews for that building
 * Includes an area for users to add a review for that building
+
 
 
 INSTRUCTIONS / HOW TO INSTALL:
