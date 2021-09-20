@@ -19,10 +19,10 @@ Tech Stack:
 Features:
 
 Homepage:
-Navigation Bar
-Description of Tenant Helper App
-Create an Account
-Log In
+* Navigation Bar
+* Description of Tenant Helper App
+* Create an Account
+* Log In
 
 Search Page:
 Search for an Address
@@ -45,11 +45,11 @@ Set up and activate a virtual environment:
 >>>source env/bin/activate
 
 Install frameworks & libraries:
->>>pip3 install -r requirements.txt
+>pip3 install -r requirements.txt
 
 Seed the database:
->>>python3 seed_database.py
+>python3 seed_database.py
 
 Run the server:
->>>python3 server.py
+>python3 server.py
 (then, open in browser)
