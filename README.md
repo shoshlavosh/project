@@ -38,6 +38,7 @@ View a List of All Buildings by Address:
 
 Building Page:
 * Shows an interactive Google Map with a marker centered on the address
+* User can drag the pedestrian icon to the marker for the Street View of that address
 * Lists any complaints, violations, and reviews for that building
 * Includes an area for users to add a review for that building
 
