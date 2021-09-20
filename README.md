@@ -20,7 +20,7 @@ Tech Stack:
 
 FEATURES
 
-##Homepage:
+Homepage:
 * Navigation Bar
 * Description of Tenant Helper App
 * Create an Account
