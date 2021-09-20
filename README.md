@@ -21,7 +21,7 @@ TECH STACK:
 * APIs: San Francisco Department of Building Inspection, Google Maps, and Google Geocoding
 
 
-FEATURES
+FEATURES:
 
 Homepage:
 * Navigation Bar
