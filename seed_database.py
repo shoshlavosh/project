@@ -28,7 +28,6 @@ model.db.create_all() #create db using model.py
 #open up json files and parse through them, item by item
 #add complaints to database
 
-# with open('data/evictions.json') as f: #syntax is from the movie ratings lab
 complaints_data = json.loads(open('data/complaints.json').read())
 
 complaints_in_db = []
@@ -52,7 +51,7 @@ for complaint in complaints_data:
     db_complaint = crud.create_complaint(complaint_number, building.building_id,
                                         complaint_description,
                                         date_filed) 
-                                        #will need to add building_id
+                                       
 
     complaints_in_db.append(db_complaint)
 
@@ -90,17 +89,9 @@ for violation in violations_data:
 
     violations_in_db.append(db_violation)
 
-#create fake users & fake reviews to add to database
+#create fake users to add to database
 for n in range(10):
     email = f'user{n}@test.com'
     password = 'test'
 
     user = crud.create_user(email, password)
-
-#test review
-# review_date = '2004, 4, 3'
-# review_text = 'test'
-# rating = '1'
-# landlord_name = 'Landlord'
-
-# crud.create_review(building.building_id, user.user_id, review_date, review_text, rating, landlord_name)

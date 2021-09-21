@@ -23,17 +23,9 @@ h1 {
   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: black;
-  /* text-shadow:
-       3px 3px 0 rgb(161, 160, 160),
-     -1px -1px 0 rgb(161, 160, 160),  
-      1px -1px 0 rgb(161, 160, 160),
-      -1px 1px 0 rgb(161, 160, 160),
-       1px 1px 0 rgb(161, 160, 160); */
-
 }
 
 h2, h3 {
-  /* font-weight: bold;  */
     font-family: "urbanist", sans-serif;
     color: white;
     text-shadow:

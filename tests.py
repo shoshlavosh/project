@@ -78,7 +78,7 @@ class FlaskTests(unittest.TestCase):
     #     print()
     #     result = doctest.testmod()
     #     if not result.failed:
-    #         print("ALL TESTS PASSED. GOOD WORK!")
+    #         print("ALL TESTS PASSED")
     #     print()
 
 

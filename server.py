@@ -38,10 +38,6 @@ def show_building(building_id):
 
     building = crud.get_building_by_id(building_id)
 
-    # print("*"*20)
-    # print(building.reviews[0].review_date.strftime('%Y-%m-%d'))
-    # print("*"*20)
-
     return render_template("building_details.html", building=building,
                             complaints=building.complaints, 
                             violations=building.violations,
@@ -92,7 +88,6 @@ def handle_login():
 
     email = request.form['email'] 
     password = request.form['password']
-    #note: lab exercise solution used request.form.get()
 
     user = crud.get_user_by_email(email)
 
@@ -108,9 +103,6 @@ def handle_login():
     else:
         session['user_email'] = user.email #adds key to Flask session
         flash(f'Logged in. Welcome back, {user.email}!')
-        #maybe change this to return a menu template where user can 
-        #choose to search for an address, create a review, etc.
-        # return render_template("/address_search.html") 
         return redirect("/search")
 
 
@@ -159,10 +151,6 @@ def create_review(building_id):
         review_text = request.form['review_text']
 
         landlord_name = request.form['landlord_name']
-
-        # if not review_text:
-        #     flash("Error: Please enter review text")
-        #     return redirect("/review/<building_id>")
 
         review = crud.create_review(building_id=building_id, 
                                 user_id=user.user_id,
